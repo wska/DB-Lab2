@@ -1,18 +1,22 @@
+CREATE OR REPLACE FUNCTION team(int) RETURNS int LANGUAGE SQL as
+$$ select teamID from team where teamID = $1; $$;
+
 DROP TABLE IF EXISTS Patient;
 CREATE TABLE Patient (
 Name varchar(255) not null,
 pnum varchar(13),
 gender int,
-age int,
-arrival timestamp,
-issue int,
-inQueue int,
-prio int
+age int
 );
 
-
-
-
+DROP TABLE IF EXISTS InQueue;
+create table InQueue (
+patID int,
+arrival timestamp not null default now(),
+issue int,
+prio int,
+teamID int
+);
 
 
 DROP TABLE IF EXISTS Issue;

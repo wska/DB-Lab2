@@ -26,6 +26,12 @@ def getQueueTimes(conn, prio):
     rows = cursor.fetchall()
     return rows
 
+def getQueues(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT 
+    """)
+    return cursor.fetchall()
 
     
 conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
