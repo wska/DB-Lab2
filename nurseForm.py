@@ -4,20 +4,24 @@ from Tkinter import Tk, Text, TOP, BOTH, X, N, LEFT
 from Tkinter import *
 from ttk import Frame, Label, Entry
 from ttk import *
+from doctorForm import *
 
 
-class Example(Frame):
+
+class Forms(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self, parent)
 
         self.parent = parent
-        self.initUI()
+        self.nurseForm()
+    def new_window(self):
+        self.newWindow = Toplevel(self.parent)
+        self.app = doctorForm(self.newWindow)
 
+    def nurseForm(self):
 
-    def initUI(self):
-
-        self.parent.title("Review")
+        self.parent.title("Nurse Form")
         self.pack(fill=BOTH, expand=True)
 
 
@@ -25,7 +29,7 @@ class Example(Frame):
         quitButton = Button(self, text ="Cancel", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Add to queue", command=self.getInfo)
+        queueButton = Button(self,text="Add to queue", command=(self.getInfo))
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -131,12 +135,11 @@ class Example(Frame):
 
 
 
-
 def main():
 
     root = Tk()
     root.geometry("700x300+300+300")
-    app = Example(root)
+    app = Forms(root)
     root.mainloop()
 
 

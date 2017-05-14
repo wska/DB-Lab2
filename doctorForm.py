@@ -6,11 +6,11 @@ from ttk import Frame, Label, Entry
 from ttk import *
 
 
-class Example(Frame):
+class doctorForm(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self, parent)
-
+        
         self.parent = parent
         self.initUI()
 
@@ -194,7 +194,7 @@ def main():
 
     root = Tk()
     root.geometry("700x300+300+300")
-    app = Example(root)
+    app = doctorForm(root)
     root.mainloop()
 
 
