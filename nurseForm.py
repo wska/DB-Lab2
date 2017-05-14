@@ -29,7 +29,8 @@ class Forms(Frame):
         quitButton = Button(self, text ="Cancel", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Add to queue", command=(self.getInfo))
+        patientInfo = self.getInfo
+        queueButton = Button(self,text="Add to queue", command=self.new_window)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
