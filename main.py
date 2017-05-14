@@ -3,7 +3,7 @@
 #William Skagerstrom, Teodor Karlgren
 
 import psycopg2
-#Just prints an empty table and gets its rows, which is empty []
+
 
 
 def getIssues(connection):
@@ -18,7 +18,7 @@ def getQueueTimes(conn, prio):
     cursor.execute("""
     SELECT sum(prio), inqueue
     FROM (
-    SELECT prio, inqueue 
+    SELECT prio, inqueue
     FROM patient
     WHERE prio >= {}
     GROUP BY inqueue
@@ -27,7 +27,6 @@ def getQueueTimes(conn, prio):
     return rows
 
 
-    
+
 conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
 print(getQueueTimes(conn, 4))
-
