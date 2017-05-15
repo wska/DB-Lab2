@@ -54,32 +54,32 @@ class queuePicker(Frame):
         #getQueue(conn, tId)
         self.doctorTeam = 1
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow, self.doctorTeam)
+        self.app = doctorForm(self.newWindow,self.conn, self.doctorTeam)
 
     def open_Doctor2(self):
         #getQueue(conn, tId)
         self.doctorTeam = 2
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow, self.doctorTeam)
+        self.app = doctorForm(self.newWindow,self.conn,  self.doctorTeam)
 
 
     def open_Doctor3(self):
         #getQueue(conn, tId)
         self.doctorTeam = 3
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow, self.doctorTeam)
+        self.app = doctorForm(self.newWindow,self.conn,  self.doctorTeam)
 
     def open_Doctor4(self):
         #getQueue(conn, tId)
         self.doctorTeam = 4
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow, self.doctorTeam)
+        self.app = doctorForm(self.newWindow, self.conn, self.doctorTeam)
 
     def open_Doctor5(self):
         #getQueue(conn, tId)
         self.doctorTeam = 5
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow, self.doctorTeam)
+        self.app = doctorForm(self.newWindow,self.conn,  self.doctorTeam)
 
 
 
@@ -140,7 +140,7 @@ class nurseQueueSelect(Frame):
                 self.open_NurseQueue3()
             elif i == 4:
                 print("open 4")
-                                
+
                 self.open_NurseQueue4()
             elif i == 5:
                 print("open 5")

@@ -5,17 +5,19 @@ from Tkinter import Tk, Text, TOP, BOTH, X, N, LEFT
 from Tkinter import *
 from ttk import Frame, Label, Entry
 from ttk import *
-#from main import *
+import main
 
 
 class doctorForm(Frame):
 
-    def __init__(self, parent, doctorTeam):
+    def __init__(self, parent, conn, doctorTeam):
         Frame.__init__(self, parent)
 
         self.parent = parent
         self.doctorTeam = doctorTeam
+        self.conn = conn
         self.initUI()
+
 
     def quit(self):
         self.parent.destroy()
@@ -27,6 +29,20 @@ class doctorForm(Frame):
         self.pack(fill=BOTH, expand=True)
 
         #print(self.doctorTeam)
+
+
+        formInfo = (main.top(self.conn, self.doctortTeam))[0]
+        cname = formInfo[0]
+        cpnum = formInfo[1]
+        cgender = formInfo[2]
+        cage = formInfo[3]
+        carrival = formInfo[5]
+        cissue = formInfo[6]
+        cprio =  formInfo[7]
+        cteamid = formInfo[8]
+
+
+
 
 
         entry = Entry(self)
@@ -45,7 +61,7 @@ class doctorForm(Frame):
 
         self.entry1 = Entry(frame1)
         self.entry1.pack(fill=X, padx=5, expand=True)
-        #self.entry1.insert(INSERT, "Kalle")
+        self.entry1.insert(INSERT, cname)
         #self.entry1.config(state=DISABLED)
 
         pNumber = Frame(self)
@@ -55,6 +71,7 @@ class doctorForm(Frame):
 
         self.pNumberEntry = Entry(pNumber)
         self.pNumberEntry.pack(fill=X, padx=5, expand=True)
+        self.pNumberEntry.insert(INSERT, cpnum)
 
         frame2 = Frame(self)
         frame2.pack(fill=X)
@@ -64,17 +81,18 @@ class doctorForm(Frame):
 
         self.entry2 = Entry(frame2)
         self.entry2.pack(fill=X, padx=5, expand=True)
+        self.entry2.insert(INSERT, cage)
 
         gender = Frame(self)
         gender.pack(fill=X)
         genderLabel = Label(gender, text="Gender", width=8)
         genderLabel.pack(side=LEFT, padx=0, pady= 0)
 
-        self.genderChoice = IntVar()
+        self.genderChoice = StringVar()
 
-        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 1).pack(side=LEFT, padx = 0, pady=0)
-        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 0).pack(side=LEFT, padx = 0, pady=0)
-
+        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 'M').pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 'F').pack(side=LEFT, padx = 0, pady=0)
+        self.genderChoice.set(cgender)
 
         frame3 = Frame(self)
         frame3.pack(fill=BOTH)
@@ -87,6 +105,7 @@ class doctorForm(Frame):
 
         self.entry3 = Scale(frame3, from_=1, to=5, command=self.onScale, orient=HORIZONTAL)
         self.entry3.pack(side=LEFT , padx=5, pady=5)
+        self.entry3.insert(INSERT, cprio)
 
 
 
@@ -178,7 +197,7 @@ class doctorForm(Frame):
 
     def getInfo(self):
 
-        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
+        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
 
     def onScale(self,val):
         v = int(float(val))
