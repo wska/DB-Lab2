@@ -103,7 +103,7 @@ class doctorForm(Frame):
         lbl3n = Label(frame3, textvariable=self.var)
         lbl3n.pack(side=LEFT, padx=0)
 
-        self.entry3 = Scale(frame3, from_=1, to=5, command=self.onScale, orient=HORIZONTAL)
+        self.entry3 = Entry(frame3)
         self.entry3.pack(side=LEFT , padx=5, pady=5)
         self.entry3.insert(INSERT, cprio)
 
