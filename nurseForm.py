@@ -86,10 +86,10 @@ class nurseForm(Frame):
         genderLabel = Label(gender, text="Gender", width=8)
         genderLabel.pack(side=LEFT, padx=0, pady= 0)
 
-        self.genderChoice = IntVar()
+        self.genderChoice = StringVar()
 
-        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 1).pack(side=LEFT, padx = 0, pady=0)
-        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 0).pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 'M').pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 'F').pack(side=LEFT, padx = 0, pady=0)
 
 
         frame3 = Frame(self)
