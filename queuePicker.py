@@ -16,6 +16,8 @@ class queuePicker(Frame):
         self.parent = parent
         self.queuePickerForm()
 
+
+
     def queuePickerForm(self):
         self.parent.title("Queue Picker")
         self.pack(fill=BOTH)
@@ -49,31 +51,31 @@ class queuePicker(Frame):
         #getQueue(conn, tId)
         self.doctorTeam = 1
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.app = doctorForm(self.newWindow, self.doctorTeam)
 
     def open_Doctor2(self):
         #getQueue(conn, tId)
         self.doctorTeam = 2
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.app = doctorForm(self.newWindow, self.doctorTeam)
 
     def open_Doctor3(self):
         #getQueue(conn, tId)
         self.doctorTeam = 3
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.app = doctorForm(self.newWindow, self.doctorTeam)
 
     def open_Doctor4(self):
         #getQueue(conn, tId)
         self.doctorTeam = 4
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.app = doctorForm(self.newWindow, self.doctorTeam)
 
     def open_Doctor5(self):
         #getQueue(conn, tId)
         self.doctorTeam = 5
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.app = doctorForm(self.newWindow, self.doctorTeam)
 '''
 def main():
 

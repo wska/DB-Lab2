@@ -8,12 +8,13 @@ from ttk import *
 #from main import *
 
 
-class doctorForm(Frame, queuePicker):
+class doctorForm(Frame):
 
-    def __init__(self, parent):
-        Frame.__init__(self, parent)
+    def __init__(self, parent, doctorTeam):
+        Frame.__init__(self, parent, doctorTeam)
 
         self.parent = parent
+        self.doctorTeam = doctorTeam
         self.initUI()
 
     def quit(self):
