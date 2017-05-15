@@ -27,16 +27,6 @@ class nurseForm(Frame):
         self.patientInfo,self.teams = self.getInfo()
         self.app = nurseQueueSelect(self.newWindow, self.patientInfo, self.teams, self.conn)
 
-                                    '''
-    def Box(self):
-        choices = ['Queue 1','Queue 2','Queue 3','Queue 4','Queue 5']
-        variable = StringVar(self)
-        variable.set('Queue 1')
-
-        w = OptionMenu(self, variable, *choices)
-        w.pack();
-    '''
-
 
 
     def nurseForm(self):

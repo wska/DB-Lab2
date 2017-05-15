@@ -53,9 +53,9 @@ def getQueue(conn, tId):
 def addToQueue(conn, values):
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO inQueue values({}, now(), {}, {}, {});
+    INSERT INTO inQueue values('{}', now(), {}, {}, {});
     """.format(*values))
-    return cursor.fetchall()
+    conn.commit()
 
 def getQueues(conn):
     cursor = conn.cursor()

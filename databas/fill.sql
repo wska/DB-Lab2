@@ -1,11 +1,11 @@
-insert into patient values('asdf1', 1 ,1 ,2);
-insert into patient values('asdf2', 2 ,1 ,5);
-insert into patient values('asdf3', 3 ,2 ,6);
-insert into patient values('asdf4', 4 ,2 ,7);
-insert into patient values('asdf5', 5 ,1 ,8);
-insert into patient values('asdf6', 6 ,1 ,9);
-insert into patient values('asdf7', 7 ,1 ,10);
-insert into patient values('asdf8', 8 ,1 ,11);
+insert into patient values('asdf1', 1 ,'M' ,2);
+insert into patient values('asdf2', 2 , 'M' ,5);
+insert into patient values('asdf3', 3 , 'F',6);
+insert into patient values('asdf4', 4 , 'F' ,7);
+insert into patient values('asdf5', 5 ,'F' ,8);
+insert into patient values('asdf6', 6 , 'M',9);
+insert into patient values('asdf7', 7 , 'F',10);
+insert into patient values('asdf8', 8 , 'M',11);
 
 insert into inQueue values(1, now(), 1, 2, 1); 
 insert into inQueue values(2, now(), 1, 4, 1); 
