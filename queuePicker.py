@@ -21,10 +21,12 @@ class queuePicker(Frame):
     def queuePickerForm(self):
         self.parent.title("Queue Picker")
         self.pack(fill=BOTH)
+        self.parent.geometry("300x300+300+300")
+
 
 
         menuEntry = Entry(self)
-        menuQuitButton = Button(self, text ="Cancel", command=self.quit)
+        menuQuitButton = Button(self, text ="Exit", command=self.quit)
         menuQuitButton.pack(side=BOTTOM, pady = 5)
 
 
@@ -58,6 +60,7 @@ class queuePicker(Frame):
         self.doctorTeam = 2
         self.newWindow = Toplevel(self.parent)
         self.app = doctorForm(self.newWindow, self.doctorTeam)
+
 
     def open_Doctor3(self):
         #getQueue(conn, tId)

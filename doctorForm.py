@@ -11,7 +11,7 @@ from ttk import *
 class doctorForm(Frame):
 
     def __init__(self, parent, doctorTeam):
-        Frame.__init__(self, parent, doctorTeam)
+        Frame.__init__(self, parent)
 
         self.parent = parent
         self.doctorTeam = doctorTeam
@@ -23,8 +23,10 @@ class doctorForm(Frame):
     def initUI(self):
 
         self.parent.title("Doctor Form")
+        self.parent.geometry("700x300+300+300")
         self.pack(fill=BOTH, expand=True)
 
+        #print(self.doctorTeam)
 
         entry = Entry(self)
         quitButton = Button(self, text ="Exit", command=self.quit)
@@ -163,12 +165,11 @@ class doctorForm(Frame):
 
 
 
-        self.home=BooleanVar()
-        self.further=BooleanVar()
+        self.where=BooleanVar()
 
 
-        self.entry6 = Radiobutton(frame6, text="Send home", variable=self.home).pack(side=LEFT, padx = 0, pady=0)
-        self.entry6 = Radiobutton(frame6, text="Send for further treatment", variable=self.further).pack(side=LEFT, padx = 0, pady=0)
+        self.entry6 = Radiobutton(frame6, text="Send home", variable=self.where, value=0).pack(side=LEFT, padx = 0, pady=0)
+        self.entry6 = Radiobutton(frame6, text="Send for further treatment", variable=self.where, value=1).pack(side=LEFT, padx = 0, pady=0)
 
 
 
@@ -176,17 +177,27 @@ class doctorForm(Frame):
 
     def getInfo(self):
 
-        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()), self.getSymptoms()])
+        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
 
     def onScale(self,val):
         v = int(float(val))
         self.var.set(v)
 
-    def getSymptoms(self): #How to get checkbox values?
+    def getDrugs(self): #How to get checkbox values?
         Symptoms = []
         i = 1
         for drug in (self.drug1,self.drug2,self.drug3,self.drug4,self.drug5,self.drug6,self.drug7,self.drug8,self.drug9,self.drug10):
             if drug.get():
+                Symptoms.append(i)
+            i=i+1
+
+        return(Symptoms)
+
+    def getTreatments(self): #How to get checkbox values?
+        Symptoms = []
+        i = 1
+        for treatment in (self.treatment1,self.treatment2,self.treatment3,self.treatment4,self.treatment5,self.treatment6,self.treatment7,self.treatment8,self.treatment9,self.treatment10):
+            if treatment.get():
                 Symptoms.append(i)
             i=i+1
 

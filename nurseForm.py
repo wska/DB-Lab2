@@ -38,6 +38,7 @@ class nurseForm(Frame):
     def nurseForm(self):
 
         self.parent.title("Nurse Form")
+        self.parent.geometry("700x300+300+300")
         self.pack(fill=BOTH, expand=True)
 
 
