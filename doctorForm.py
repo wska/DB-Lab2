@@ -49,7 +49,7 @@ class doctorForm(Frame):
         quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Checkout", command=self.getInfo)
+        queueButton = Button(self,text="Checkout", command=self.quit)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -62,7 +62,7 @@ class doctorForm(Frame):
         self.entry1 = Entry(frame1)
         self.entry1.pack(fill=X, padx=5, expand=True)
         self.entry1.insert(INSERT, cname)
-        #self.entry1.config(state=DISABLED)
+        self.entry1.config(state=DISABLED)
 
         pNumber = Frame(self)
         pNumber.pack(fill=X)
@@ -72,6 +72,7 @@ class doctorForm(Frame):
         self.pNumberEntry = Entry(pNumber)
         self.pNumberEntry.pack(fill=X, padx=5, expand=True)
         self.pNumberEntry.insert(INSERT, cpnum)
+        self.pNumberEntry.conig(state=DISTABLED)
 
         frame2 = Frame(self)
         frame2.pack(fill=X)
@@ -82,6 +83,7 @@ class doctorForm(Frame):
         self.entry2 = Entry(frame2)
         self.entry2.pack(fill=X, padx=5, expand=True)
         self.entry2.insert(INSERT, cage)
+        self.entry2.config(state=DISABLED)
 
         gender = Frame(self)
         gender.pack(fill=X)
@@ -93,6 +95,7 @@ class doctorForm(Frame):
         self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 'M').pack(side=LEFT, padx = 0, pady=0)
         self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 'F').pack(side=LEFT, padx = 0, pady=0)
         self.genderChoice.set(cgender)
+        self.genderChoice.config(state=DISABLED)
 
         frame3 = Frame(self)
         frame3.pack(fill=X)
@@ -104,6 +107,7 @@ class doctorForm(Frame):
         self.entry3 = Entry(frame3)
         self.entry3.pack(side=LEFT , padx=5, pady=5)
         self.entry3.insert(INSERT, cprio)
+        self.entry3.config(state=DISABLED)
 
 
 
