@@ -24,9 +24,10 @@ class nurseForm(Frame):
 
     def new_window(self):
         self.newWindow = Toplevel(self.parent)
-        self.patientInfo = self.getInfo()
-        self.app = nurseQueueSelect(self.newWindow, self.patientInfo)
-    '''
+        self.patientInfo,self.teams = self.getInfo()
+        self.app = nurseQueueSelect(self.newWindow, self.patientInfo, self.teams, self.conn)
+
+                                    '''
     def Box(self):
         choices = ['Queue 1','Queue 2','Queue 3','Queue 4','Queue 5']
         variable = StringVar(self)
@@ -138,8 +139,9 @@ class nurseForm(Frame):
 
     def getInfo(self):
 
-        return main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0])
-        
+        teams = main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0])
+        personInfo = [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0]
+        return personInfo, teams
 
     def onScale(self,val):
         v = int(float(val))

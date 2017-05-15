@@ -86,10 +86,11 @@ class queuePicker(Frame):
 
 class nurseQueueSelect(Frame):
 
-    def __init__(self, parent, teams, conn):
+    def __init__(self, parent, patientInfo, teams, conn):
         Frame.__init__(self, parent)
         self.parent = parent
         self.teams = teams
+        self.patientInfo = patientInfo
         self.nurseQueueSelectForm()
         self.conn = conn
 
