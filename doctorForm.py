@@ -31,7 +31,7 @@ class doctorForm(Frame):
         #print(self.doctorTeam)
 
 
-        formInfo = (main.top(self.conn, self.doctortTeam))[0]
+        formInfo = (main.top(self.conn, self.doctorTeam))[0]
         cname = formInfo[0]
         cpnum = formInfo[1]
         cgender = formInfo[2]
