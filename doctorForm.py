@@ -28,6 +28,7 @@ class doctorForm(Frame):
 
         #print(self.doctorTeam)
 
+
         entry = Entry(self)
         quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
