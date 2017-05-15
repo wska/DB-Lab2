@@ -140,6 +140,7 @@ class nurseForm(Frame):
     def getInfo(self):
 
         teams = main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0])
+        
 
     def onScale(self,val):
         v = int(float(val))
