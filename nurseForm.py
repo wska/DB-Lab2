@@ -8,14 +8,14 @@ from ttk import Frame, Label, Entry
 from ttk import *
 from doctorForm import *
 from queuePicker import *
-#from main import *
+import main
 
 
 class nurseForm(Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, conn):
         Frame.__init__(self, parent)
-
+        self.conn = conn
         self.parent = parent
         self.nurseForm()
 
@@ -135,7 +135,7 @@ class nurseForm(Frame):
 
     def getInfo(self):
 
-        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()), self.getSymptoms()])
+        teams = main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0])
 
     def onScale(self,val):
         v = int(float(val))

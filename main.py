@@ -19,12 +19,25 @@ def getQueueTimes(conn, prio):
     SELECT sum(prio), inqueue
     FROM (
     SELECT prio, inqueue
-    FROM patient
-    WHERE prio >= {})
+    FROM inqueue
+    WHERE prio >= {}) foo
     GROUP BY inqueue
     """.format(prio))
     rows = cursor.fetchall()
     return rows
+
+def getSpec(conn):
+    cursor = conn.cursor()
+    specDict = {}
+    for x in range(1,6):
+        cursor.execute("""
+        SELECT issue
+        FROM specIn
+        WHERE teamId = {}
+        """.format(x))
+        specDict[x] = cursor.fetchall()
+    return specDict
+    
 
 def getQueue(conn, tId):
     cursor = conn.cursor()
@@ -35,12 +48,14 @@ def getQueue(conn, tId):
     ON Patient.pnum = inQueue.patid
     WHERE inqueue.teamID = {}
     """.format(tId))
+    return cursor.fetchall()
 
 def addToQueue(conn, values):
     cursor = conn.cursor()
     cursor.execute("""
     INSERT INTO inQueue values({}, {}, {}, {});
     """.format(*values))
+    return cursor.fetchall()
 
 def getQueues(conn):
     cursor = conn.cursor()
@@ -52,8 +67,10 @@ def getQueues(conn):
 def addPatient(conn, values, issue):
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO Patient values({}, {}, {}, {});
+    INSERT INTO Patient values('{}', '{}', {}, {});
     """.format(*values))
+    conn.commit()
+    cursor = conn.cursor()
     cursor.execute("""
     SELECT teamID
     FROM specIn

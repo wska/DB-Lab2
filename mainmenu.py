@@ -9,12 +9,13 @@ from doctorForm import *
 from nurseForm import *
 from queuePicker import *
 #from main import *
+import psycopg2
 
 class Menu(Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, conn):
         Frame.__init__(self, parent)
-
+        self.conn = conn
         self.parent = parent
         self.menuForm()
 
@@ -23,7 +24,7 @@ class Menu(Frame):
 
     def open_Nurse(self):
         self.newWindow = Toplevel(self.parent)
-        self.app = nurseForm(self.newWindow)
+        self.app = nurseForm(self.newWindow, self.conn)
 
     def open_Doctor(self):
         self.newWindow = Toplevel(self.parent)
@@ -50,10 +51,10 @@ class Menu(Frame):
         menuRemoveButton.pack(side=BOTTOM, pady = 5)
 
 def main():
-
+    conn = psycopg2.connect("dbname=hospital user=postgres")
     root = Tk()
     root.geometry("300x120+300+300")
-    app = Menu(root)
+    app = Menu(root, conn)
     root.mainloop()
 
 if __name__ == '__main__':
