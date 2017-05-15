@@ -67,7 +67,7 @@ def getQueues(conn):
 def addPatient(conn, values, issue):
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO Patient values('{}', '{}', {}, {});
+    INSERT INTO Patient values('{}', '{}', '{}', {});
     """.format(*values))
     conn.commit()
     cursor = conn.cursor()
