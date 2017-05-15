@@ -35,7 +35,7 @@ def getSpec(conn):
         FROM specIn
         WHERE teamId = {}
         """.format(x))
-        specDict[x] = cursor.fetchall()
+        specDict[x] = [i[0] for i in cursor.fetchall()]
     return specDict
     
 
@@ -93,3 +93,5 @@ def pop(conn, queue):
 
 conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
 print(getQueueTimes(conn, 4))
+
+
