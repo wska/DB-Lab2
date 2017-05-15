@@ -21,7 +21,7 @@ def getQueueTimes(conn, prio):
     SELECT prio, inqueue
     FROM inqueue
     WHERE prio >= {}) foo
-    GROUP BY inqueue
+    GROUP BY inQueue
     """.format(prio))
     rows = cursor.fetchall()
     return rows
@@ -37,7 +37,7 @@ def getSpec(conn):
         """.format(x))
         specDict[x] = [i[0] for i in cursor.fetchall()]
     return specDict
-    
+
 
 def getQueue(conn, tId):
     cursor = conn.cursor()
@@ -93,5 +93,3 @@ def pop(conn, queue):
 
 conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
 print(getQueueTimes(conn, 4))
-
-

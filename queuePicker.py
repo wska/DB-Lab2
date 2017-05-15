@@ -86,10 +86,10 @@ class queuePicker(Frame):
 
 class nurseQueueSelect(Frame):
 
-    def __init__(self, parent, patientInfo, conn):
+    def __init__(self, parent, teams, conn):
         Frame.__init__(self, parent)
         self.parent = parent
-        self.patientInfo = patientInfo
+        self.teams = teams
         self.nurseQueueSelectForm()
         self.conn = conn
 
@@ -106,11 +106,11 @@ class nurseQueueSelect(Frame):
         menuQuitButton = Button(self, text ="Exit", command=self.quit)
         menuQuitButton.pack(side=BOTTOM, pady = 5)
 
-        queues = self.patientInfo[5]
+        #queues = getInfo()
         issueDict = getSpec(self.conn)
         queueChosen = 0
         openedButtons = []
-
+        '''
         for i in queues:
             if i in issueDict[1] and i not in openedButtons:
                 open_NurseQueue1
@@ -125,6 +125,18 @@ class nurseQueueSelect(Frame):
                 open_NurseQueue4
 
             elif i in issueDict[5] and i not in openedButtons:
+                open_NurseQueue5
+        '''
+        for i teams:
+            if i == 1:
+                open_NurseQueue1
+            elif i == 2:
+                open_NurseQueue2
+            elif i == 3:
+                open_NurseQueue3
+            elif i == 4:
+                open_NurseQueue4
+            elif i == 5:
                 open_NurseQueue5
 
 
