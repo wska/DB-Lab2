@@ -130,8 +130,8 @@ class nurseForm(Frame):
 
     def getInfo(self):
 
-        teams = main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,  self.genderChoice.get() , int(self.entry3.get())], self.getSymptoms()[0])
-        personInfo = [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,  self.genderChoice.get() , int(self.entry3.get())], self.getSymptoms()[0]
+        teams = main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(), self.genderChoice.get(), self.entry2.get()], self.getSymptoms()[0])
+        personInfo = [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0]
         return personInfo, teams
 
     def onScale(self,val):
