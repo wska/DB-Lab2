@@ -1,24 +1,40 @@
-
+#Python 2.7.0
+#William Skagerstrom, Teodor Karlgren
 
 from Tkinter import Tk, Text, TOP, BOTH, X, N, LEFT
 from Tkinter import *
+import tkMessageBox
 from ttk import Frame, Label, Entry
 from ttk import *
 from doctorForm import *
+from queuePicker import *
+#from main import *
 
 
-
-class Forms(Frame):
+class nurseForm(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self, parent)
 
         self.parent = parent
         self.nurseForm()
+
+    def quit(self):
+        self.parent.destroy()
+
     def new_window(self):
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.patientInfo = self.getInfo
+        self.app = queuePicker(self.newWindow, self.patientInfo)
+    '''
+    def Box(self):
+        choices = ['Queue 1','Queue 2','Queue 3','Queue 4','Queue 5']
+        variable = StringVar(self)
+        variable.set('Queue 1')
 
+        w = OptionMenu(self, variable, *choices)
+        w.pack();
+    '''
     def nurseForm(self):
 
         self.parent.title("Nurse Form")
@@ -26,11 +42,11 @@ class Forms(Frame):
 
 
         entry = Entry(self)
-        quitButton = Button(self, text ="Cancel", command=self.quit)
+        quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
         patientInfo = self.getInfo
-        queueButton = Button(self,text="Add to queue", command=self.new_window)
+        queueButton = Button(self,text="Add to queue", command=self.getInfo)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -135,14 +151,15 @@ class Forms(Frame):
         return(Symptoms)
 
 
-
+'''
 def main():
 
     root = Tk()
     root.geometry("700x300+300+300")
-    app = Forms(root)
+    app = nurseForm(root)
     root.mainloop()
 
 
 if __name__ == '__main__':
     main()
+'''

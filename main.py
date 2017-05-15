@@ -1,5 +1,5 @@
 
-#Python 3.5.2
+#Python 2.7.0
 #William Skagerstrom, Teodor Karlgren
 
 import psycopg2
@@ -34,9 +34,9 @@ def getQueue(conn, tId):
     JOIN inQueue
     ON Patient.pnum = inQueue.patid
     WHERE inqueue.teamID = {}
-    """format(tId))
+    """.format(tId))
 
-def addToQueue(conn, values)
+def addToQueue(conn, values):
     cursor = conn.cursor()
     cursor.execute("""
     INSERT INTO inQueue values({}, {}, {}, {});

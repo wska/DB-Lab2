@@ -1,12 +1,14 @@
-
+#Python 2.7.0
+#William Skagerstrom, Teodor Karlgren
 
 from Tkinter import Tk, Text, TOP, BOTH, X, N, LEFT
 from Tkinter import *
 from ttk import Frame, Label, Entry
 from ttk import *
+#from main import *
 
 
-class doctorForm(Frame):
+class doctorForm(Frame, queuePicker):
 
     def __init__(self, parent):
         Frame.__init__(self, parent)
@@ -14,19 +16,20 @@ class doctorForm(Frame):
         self.parent = parent
         self.initUI()
 
-
+    def quit(self):
+        self.parent.destroy()
 
     def initUI(self):
 
-        self.parent.title("Review")
+        self.parent.title("Doctor Form")
         self.pack(fill=BOTH, expand=True)
 
 
         entry = Entry(self)
-        quitButton = Button(self, text ="Cancel", command=self.quit)
+        quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Add to queue", command=self.getInfo)
+        queueButton = Button(self,text="Checkout", command=self.getInfo)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -38,8 +41,8 @@ class doctorForm(Frame):
 
         self.entry1 = Entry(frame1)
         self.entry1.pack(fill=X, padx=5, expand=True)
-        self.entry1.insert(INSERT, "Kalle")
-        self.entry1.config(state=DISABLED)
+        #self.entry1.insert(INSERT, "Kalle")
+        #self.entry1.config(state=DISABLED)
 
         pNumber = Frame(self)
         pNumber.pack(fill=X)
@@ -189,7 +192,7 @@ class doctorForm(Frame):
         return(Symptoms)
 
 
-
+'''
 
 def main():
 
@@ -201,3 +204,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+'''
