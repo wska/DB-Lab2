@@ -78,7 +78,7 @@ def addPatient(conn, values, issue):
     """.format(issue))
     return [i[0] for i in cursor.fetchall()]
 
-def pop(conn, queue):
+def top(conn, queue):
     cursor = conn.cursor()
     cursor.execute("""
     SELECT *
@@ -86,7 +86,7 @@ def pop(conn, queue):
     join inqueue
     on patient.pnum = inqueue.patid
     where inqueue.teamid = {}
-    order by inqueue.prio, inqueue.arrival
+    order by inqueue.prio desc, inqueue.arrival
     limit 1
     """.format(queue))
     return cursor.fetchall()
