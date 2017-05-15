@@ -76,7 +76,7 @@ def addPatient(conn, values, issue):
     FROM specIn
     WHERE issue = {}
     """.format(issue))
-    return cursor.fetchall()
+    return [i[0] for i in cursor.fetchall()]
 
 def pop(conn, queue):
     cursor = conn.cursor()
@@ -91,5 +91,6 @@ def pop(conn, queue):
     """.format(queue))
     return cursor.fetchall()
 
-conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
-print(getQueueTimes(conn, 4))
+if __name__ == "__main__":
+    conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
+    print(getQueueTimes(conn, 4))

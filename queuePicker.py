@@ -104,8 +104,8 @@ class nurseQueueSelect(Frame):
         menuQuitButton = Button(self, text ="Exit", command=self.quit)
         menuQuitButton.pack(side=BOTTOM, pady = 5)
 
-        queues = self.patientInfo[5]
-
+        queues = self.patientInfo
+        print(queues)
         '''
         for i in queues:
             if i == 1
