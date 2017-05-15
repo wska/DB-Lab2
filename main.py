@@ -5,6 +5,14 @@
 import psycopg2
 
 
+def isEmpty(conn, queue):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT *
+    FROM inqueue
+    WHERE teamid = {}
+    """.format(queue))
+    return len(cursor.fetchall()) == 0
 
 def getIssues(connection):
     cursor = connection.cursor()
