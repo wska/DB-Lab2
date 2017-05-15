@@ -24,7 +24,7 @@ class nurseForm(Frame):
 
     def new_window(self):
         self.newWindow = Toplevel(self.parent)
-        self.patientInfo = self.getInfo
+        self.getInfo()
         self.app = nurseQueueSelect(self.newWindow, self.patientInfo)
     '''
     def Box(self):
@@ -51,7 +51,7 @@ class nurseForm(Frame):
         quitButton.pack(side=BOTTOM, pady = 10)
 
         patientInfo = self.getInfo
-        queueButton = Button(self,text="Add to queue", command=self.getInfo)
+        queueButton = Button(self,text="Add to queue", command=self.new_window)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
