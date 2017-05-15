@@ -36,8 +36,7 @@ class nurseForm(Frame):
         w.pack();
     '''
 
-    def addQueueToDatabase(self):
-        pass
+
 
     def nurseForm(self):
 
