@@ -25,7 +25,7 @@ class doctorForm(Frame):
     def initUI(self):
 
         self.parent.title("Doctor Form")
-        self.parent.geometry("700x300+300+300")
+        self.parent.geometry("700x500+300+300")
         self.pack(fill=BOTH, expand=True)
 
         #print(self.doctorTeam)
@@ -62,7 +62,7 @@ class doctorForm(Frame):
         self.entry1 = Entry(frame1)
         self.entry1.pack(fill=X, padx=5, expand=True)
         self.entry1.insert(INSERT, cname)
-        self.entry1.config(state=DISABLED)
+
 
         pNumber = Frame(self)
         pNumber.pack(fill=X)
@@ -72,7 +72,7 @@ class doctorForm(Frame):
         self.pNumberEntry = Entry(pNumber)
         self.pNumberEntry.pack(fill=X, padx=5, expand=True)
         self.pNumberEntry.insert(INSERT, cpnum)
-        self.pNumberEntry.config(state=DISABLED)
+
 
         frame2 = Frame(self)
         frame2.pack(fill=X)
@@ -83,7 +83,7 @@ class doctorForm(Frame):
         self.entry2 = Entry(frame2)
         self.entry2.pack(fill=X, padx=5, expand=True)
         self.entry2.insert(INSERT, cage)
-        self.entry2.config(state=DISABLED)
+
 
         gender = Frame(self)
         gender.pack(fill=X)
@@ -95,7 +95,32 @@ class doctorForm(Frame):
         self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 'M').pack(side=LEFT, padx = 0, pady=0)
         self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 'F').pack(side=LEFT, padx = 0, pady=0)
         self.genderChoice.set(cgender)
-        self.genderChoice.config(state=DISABLED)
+
+
+
+        timeFrame = Frame(self)
+        timeFrame.pack(fill=X)
+
+        timeLabel = Label(timeFrame, text="TOA", width=8)
+        timeLabel.pack(side=LEFT, padx=5, pady=5)
+
+        self.timeEntry = Entry(frame1)
+        self.timeEntry.pack(fill=X, padx=5, expand=True)
+        self.timeEntry.insert(INSERT, carrival)
+
+
+        teamFrame = Frame(self)
+        teamFrame.pack(fill=X)
+
+        teamLabel = Label(teamFrame, text="Handled by team:", width=15)
+        teamLabel.pack(side=LEFT, padx=5, pady=5)
+
+        self.timeEntry = Entry(frame1)
+        self.timeEntry.pack(fill=X, padx=5, expand=True)
+        self.teamEntry.insert(INSERT, cteamid)
+
+
+
 
         frame3 = Frame(self)
         frame3.pack(fill=X)
@@ -107,7 +132,6 @@ class doctorForm(Frame):
         self.entry3 = Entry(frame3)
         self.entry3.pack(side=LEFT , padx=5, pady=5)
         self.entry3.insert(INSERT, cprio)
-        self.entry3.config(state=DISABLED)
 
 
 
@@ -225,14 +249,14 @@ class doctorForm(Frame):
 
         return(Symptoms)
 
-
 '''
 
 def main():
 
+    conn = psycopg2.connect("dbname=hospital user=postgres")
     root = Tk()
     root.geometry("700x300+300+300")
-    app = doctorForm(root)
+    app = doctorForm(root,conn)
     root.mainloop()
 
 
