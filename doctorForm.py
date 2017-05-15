@@ -72,7 +72,7 @@ class doctorForm(Frame):
         self.pNumberEntry = Entry(pNumber)
         self.pNumberEntry.pack(fill=X, padx=5, expand=True)
         self.pNumberEntry.insert(INSERT, cpnum)
-        self.pNumberEntry.conig(state=DISTABLED)
+        self.pNumberEntry.config(state=DISABLED)
 
         frame2 = Frame(self)
         frame2.pack(fill=X)
