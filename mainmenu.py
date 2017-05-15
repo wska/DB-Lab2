@@ -32,7 +32,7 @@ class Menu(Frame):
 
     def open_QueuePicker(self):
         self.newWindow = Toplevel(self.parent)
-        self.app = queuePicker(self.newWindow)
+        self.app = queuePicker(self.newWindow, self.conn)
 
     def menuForm(self):
         self.parent.title("Hosiptal menu")
