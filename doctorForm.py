@@ -95,13 +95,11 @@ class doctorForm(Frame):
         self.genderChoice.set(cgender)
 
         frame3 = Frame(self)
-        frame3.pack(fill=BOTH)
+        frame3.pack(fill=X)
 
-        self.var = IntVar()
+
         lbl3 = Label(frame3, text="Priority", width=8)
         lbl3.pack(side=LEFT, padx=5, pady=0)
-        lbl3n = Label(frame3, textvariable=self.var)
-        lbl3n.pack(side=LEFT, padx=0)
 
         self.entry3 = Entry(frame3)
         self.entry3.pack(side=LEFT , padx=5, pady=5)
