@@ -25,7 +25,7 @@ class nurseForm(Frame):
     def new_window(self):
         self.newWindow = Toplevel(self.parent)
         self.patientInfo = self.getInfo
-        self.app = queuePicker(self.newWindow, self.patientInfo)
+        self.app = nurseQueueSelect(self.newWindow, self.patientInfo)
     '''
     def Box(self):
         choices = ['Queue 1','Queue 2','Queue 3','Queue 4','Queue 5']
@@ -35,6 +35,10 @@ class nurseForm(Frame):
         w = OptionMenu(self, variable, *choices)
         w.pack();
     '''
+
+    def addQueueToDatabase(self):
+        pass
+
     def nurseForm(self):
 
         self.parent.title("Nurse Form")

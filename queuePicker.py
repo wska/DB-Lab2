@@ -79,6 +79,53 @@ class queuePicker(Frame):
         self.doctorTeam = 5
         self.newWindow = Toplevel(self.parent)
         self.app = doctorForm(self.newWindow, self.doctorTeam)
+
+
+
+
+class nurseQueueSelect(Frame):
+
+    def __init__(self, parent, patientInfo):
+        Frame.__init__(self, parent)
+        self.parent = parent
+        self.patientInfo = patientInfo
+        self.nurseQueueSelectForm()
+
+
+
+    def nurseQueueSelectForm(self):
+        self.parent.title("Queue Selection")
+        self.pack(fill=BOTH)
+        self.parent.geometry("300x300+300+300")
+
+
+
+        menuEntry = Entry(self)
+        menuQuitButton = Button(self, text ="Exit", command=self.quit)
+        menuQuitButton.pack(side=BOTTOM, pady = 5)
+
+
+        doctorQueueButton1 = Button(self,text="Queue", command=self.sendToDatabase)
+        doctorQueueButton1.pack(side=BOTTOM, pady = 5)
+
+
+
+    def quit(self):
+        self.parent.destroy()
+
+
+    def sendToDatabase(self):
+        #getQueue(conn, tId)
+        pass
+
+
+
+
+
+
+
+
+
 '''
 def main():
 
