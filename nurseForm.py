@@ -27,7 +27,6 @@ class nurseForm(Frame):
         self.patientInfo,self.teams = self.getInfo()
         self.app = nurseQueueSelect(self.newWindow, self.patientInfo, self.teams, self.conn)
 
-        
 
 
 

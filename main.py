@@ -53,9 +53,9 @@ def getQueue(conn, tId):
 def addToQueue(conn, values):
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO inQueue values({}, now(), {}, {}, {});
+    INSERT INTO inQueue values('{}', now(), {}, {}, {});
     """.format(*values))
-    return cursor.fetchall()
+    conn.commit()
 
 def getQueues(conn):
     cursor = conn.cursor()
@@ -76,7 +76,7 @@ def addPatient(conn, values, issue):
     FROM specIn
     WHERE issue = {}
     """.format(issue))
-    return cursor.fetchall()
+    return [i[0] for i in cursor.fetchall()]
 
 def pop(conn, queue):
     cursor = conn.cursor()
@@ -91,5 +91,6 @@ def pop(conn, queue):
     """.format(queue))
     return cursor.fetchall()
 
-conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
-print(getQueueTimes(conn, 4))
+if __name__ == "__main__":
+    conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
+    print(getQueueTimes(conn, 4))

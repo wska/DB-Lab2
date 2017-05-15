@@ -85,14 +85,13 @@ class queuePicker(Frame):
 
 
 class nurseQueueSelect(Frame):
-
     def __init__(self, parent, patientInfo, teams, conn):
         Frame.__init__(self, parent)
         self.parent = parent
         self.teams = teams
         self.patientInfo = patientInfo
-        self.nurseQueueSelectForm()
         self.conn = conn
+        self.nurseQueueSelectForm()
 
 
 
@@ -128,17 +127,24 @@ class nurseQueueSelect(Frame):
             elif i in issueDict[5] and i not in openedButtons:
                 open_NurseQueue5
         '''
-        for i teams:
+        print(self.teams)
+        for i in self.teams:
             if i == 1:
-                open_NurseQueue1
+                print("open 1")
+                self.open_NurseQueue1()
             elif i == 2:
-                open_NurseQueue2
+                print("open 2")
+                self.open_NurseQueue2()
             elif i == 3:
-                open_NurseQueue3
+                print("open 3")
+                self.open_NurseQueue3()
             elif i == 4:
-                open_NurseQueue4
+                print("open 4")
+                                
+                self.open_NurseQueue4()
             elif i == 5:
-                open_NurseQueue5
+                print("open 5")
+                self.open_NurseQueue5()
 
 
 
@@ -159,6 +165,7 @@ class nurseQueueSelect(Frame):
 
 
     def open_NurseQueue3(self):
+        print(self.patientInfo)
         nurseQueueButton3 = Button(self,text="Queue 3", command=self.sendToDatabase3)
         nurseQueueButton3.pack(side=BOTTOM, pady = 5)
 
@@ -177,22 +184,22 @@ class nurseQueueSelect(Frame):
 
 
     def sendToDatabase1(self):
-        values = [str(self.patientInfo[1]), self.patientInfo[5][0], self.patientInfo[4], 1 ]
+        values = [str(self.patientInfo[0][1]), self.patientInfo[1], self.patientInfo[0][3],1 ]
         addToQueue(self.conn, values)
 
     def sendToDatabase2(self):
-        values = [str(self.patientInfo[1]), self.patientInfo[5][0], self.patientInfo[4], 2 ]
+        values = [str(self.patientInfo[0][1]), self.patientInfo[1], self.patientInfo[0][3],2]
         addToQueue(self.conn, values)
     def sendToDatabase3(self):
-        values = [str(self.patientInfo[1]), self.patientInfo[5][0], self.patientInfo[4], 3 ]
+        values = [str(self.patientInfo[0][1]), self.patientInfo[1], self.patientInfo[0][3],3 ]
         addToQueue(self.conn, values)
 
     def sendToDatabase4(self):
-        values = [str(self.patientInfo[1]), self.patientInfo[5][0], self.patientInfo[4], 4 ]
+        values = [str(self.patientInfo[0][1]), self.patientInfo[1], self.patientInfo[0][3],4 ]
         addToQueue(self.conn, values)
 
     def sendToDatabase5(self):
-        values = [str(self.patientInfo[1]), self.patientInfo[5][0], self.patientInfo[4], 5 ]
+        values = [str(self.patientInfo[0][1]), self.patientInfo[1], self.patientInfo[0][3],5 ]
         addToQueue(self.conn, values)
 
 
