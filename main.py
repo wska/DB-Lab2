@@ -1,10 +1,18 @@
 
-#Python 3.5.2
+#Python 2.7.0
 #William Skagerstrom, Teodor Karlgren
 
 import psycopg2
 
 
+def isEmpty(conn, queue):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT *
+    FROM inqueue
+    WHERE teamid = {}
+    """.format(queue))
+    return len(cursor.fetchall()) == 0
 
 def getIssues(connection):
     cursor = connection.cursor()
@@ -19,12 +27,25 @@ def getQueueTimes(conn, prio):
     SELECT sum(prio), inqueue
     FROM (
     SELECT prio, inqueue
-    FROM patient
-    WHERE prio >= {})
-    GROUP BY inqueue
+    FROM inqueue
+    WHERE prio >= {}) foo
+    GROUP BY inQueue
     """.format(prio))
     rows = cursor.fetchall()
     return rows
+
+def getSpec(conn):
+    cursor = conn.cursor()
+    specDict = {}
+    for x in range(1,6):
+        cursor.execute("""
+        SELECT issue
+        FROM specIn
+        WHERE teamId = {}
+        """.format(x))
+        specDict[x] = [i[0] for i in cursor.fetchall()]
+    return specDict
+
 
 def getQueue(conn, tId):
     cursor = conn.cursor()
@@ -34,13 +55,15 @@ def getQueue(conn, tId):
     JOIN inQueue
     ON Patient.pnum = inQueue.patid
     WHERE inqueue.teamID = {}
-    """format(tId))
+    """.format(tId))
+    return cursor.fetchall()
 
-def addToQueue(conn, values)
+def addToQueue(conn, values):
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO inQueue values({}, {}, {}, {});
+    INSERT INTO inQueue values('{}', now(), {}, {}, {});
     """.format(*values))
+    conn.commit()
 
 def getQueues(conn):
     cursor = conn.cursor()
@@ -52,16 +75,18 @@ def getQueues(conn):
 def addPatient(conn, values, issue):
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO Patient values({}, {}, {}, {});
+    INSERT INTO Patient values('{}', '{}', '{}', {});
     """.format(*values))
+    conn.commit()
+    cursor = conn.cursor()
     cursor.execute("""
     SELECT teamID
     FROM specIn
     WHERE issue = {}
     """.format(issue))
-    return cursor.fetchall()
+    return [i[0] for i in cursor.fetchall()]
 
-def pop(conn, queue):
+def top(conn, queue):
     cursor = conn.cursor()
     cursor.execute("""
     SELECT *
@@ -69,10 +94,11 @@ def pop(conn, queue):
     join inqueue
     on patient.pnum = inqueue.patid
     where inqueue.teamid = {}
-    order by inqueue.prio, inqueue.arrival
+    order by inqueue.prio desc, inqueue.arrival
     limit 1
     """.format(queue))
     return cursor.fetchall()
 
-conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
-print(getQueueTimes(conn, 4))
+if __name__ == "__main__":
+    conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
+    print(getQueueTimes(conn, 4))

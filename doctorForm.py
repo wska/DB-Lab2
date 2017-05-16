@@ -1,31 +1,55 @@
-
+#Python 2.7.0
+#William Skagerstrom, Teodor Karlgren
 
 from Tkinter import Tk, Text, TOP, BOTH, X, N, LEFT
 from Tkinter import *
 from ttk import Frame, Label, Entry
 from ttk import *
+import main
 
 
 class doctorForm(Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, conn, doctorTeam):
         Frame.__init__(self, parent)
-        
+
         self.parent = parent
+        self.doctorTeam = doctorTeam
+        self.conn = conn
         self.initUI()
 
 
+    def quit(self):
+        self.parent.destroy()
+
     def initUI(self):
 
-        self.parent.title("Review")
+        self.parent.title("Doctor Form")
+        self.parent.geometry("700x500+300+300")
         self.pack(fill=BOTH, expand=True)
+
+        #print(self.doctorTeam)
+
+
+        formInfo = (main.top(self.conn, self.doctorTeam))[0]
+        cname = formInfo[0]
+        cpnum = formInfo[1]
+        cgender = formInfo[2]
+        cage = formInfo[3]
+        carrival = formInfo[5]
+        cissue = formInfo[6]
+        cprio =  formInfo[7]
+        cteamid = formInfo[8]
+
+
+
 
 
         entry = Entry(self)
-        quitButton = Button(self, text ="Cancel", command=self.quit)
+        quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Add to queue", command=self.getInfo)
+        queueButton = Button(self,text="Checkout", command=self.quit)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -37,8 +61,8 @@ class doctorForm(Frame):
 
         self.entry1 = Entry(frame1)
         self.entry1.pack(fill=X, padx=5, expand=True)
-        self.entry1.insert(INSERT, "Kalle")
-        self.entry1.config(state=DISABLED)
+        self.entry1.insert(INSERT, cname)
+
 
         pNumber = Frame(self)
         pNumber.pack(fill=X)
@@ -47,6 +71,8 @@ class doctorForm(Frame):
 
         self.pNumberEntry = Entry(pNumber)
         self.pNumberEntry.pack(fill=X, padx=5, expand=True)
+        self.pNumberEntry.insert(INSERT, cpnum)
+
 
         frame2 = Frame(self)
         frame2.pack(fill=X)
@@ -56,29 +82,56 @@ class doctorForm(Frame):
 
         self.entry2 = Entry(frame2)
         self.entry2.pack(fill=X, padx=5, expand=True)
+        self.entry2.insert(INSERT, cage)
+
 
         gender = Frame(self)
         gender.pack(fill=X)
         genderLabel = Label(gender, text="Gender", width=8)
         genderLabel.pack(side=LEFT, padx=0, pady= 0)
 
-        self.genderChoice = IntVar()
+        self.genderChoice = StringVar()
 
-        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 1).pack(side=LEFT, padx = 0, pady=0)
-        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 0).pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 'M').pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 'F').pack(side=LEFT, padx = 0, pady=0)
+        self.genderChoice.set(cgender)
+
+
+
+        timeFrame = Frame(self)
+        timeFrame.pack(fill=X)
+
+        timeLabel = Label(timeFrame, text="TOA", width=8)
+        timeLabel.pack(side=LEFT, padx=5, pady=5)
+
+        self.timeEntry = Entry(frame1)
+        self.timeEntry.pack(fill=X, padx=5, expand=True)
+        self.timeEntry.insert(INSERT, carrival)
+
+
+        teamFrame = Frame(self)
+        teamFrame.pack(fill=X)
+
+        teamLabel = Label(teamFrame, text="Handled by team:", width=15)
+        teamLabel.pack(side=LEFT, padx=5, pady=5)
+
+        self.timeEntry = Entry(frame1)
+        self.timeEntry.pack(fill=X, padx=5, expand=True)
+        self.teamEntry.insert(INSERT, cteamid)
+
+
 
 
         frame3 = Frame(self)
-        frame3.pack(fill=BOTH)
+        frame3.pack(fill=X)
 
-        self.var = IntVar()
+
         lbl3 = Label(frame3, text="Priority", width=8)
         lbl3.pack(side=LEFT, padx=5, pady=0)
-        lbl3n = Label(frame3, textvariable=self.var)
-        lbl3n.pack(side=LEFT, padx=0)
 
-        self.entry3 = Scale(frame3, from_=1, to=5, command=self.onScale, orient=HORIZONTAL)
+        self.entry3 = Entry(frame3)
         self.entry3.pack(side=LEFT , padx=5, pady=5)
+        self.entry3.insert(INSERT, cprio)
 
 
 
@@ -158,12 +211,11 @@ class doctorForm(Frame):
 
 
 
-        self.home=BooleanVar()
-        self.further=BooleanVar()
+        self.where=BooleanVar()
 
 
-        self.entry6 = Radiobutton(frame6, text="Send home", variable=self.home).pack(side=LEFT, padx = 0, pady=0)
-        self.entry6 = Radiobutton(frame6, text="Send for further treatment", variable=self.further).pack(side=LEFT, padx = 0, pady=0)
+        self.entry6 = Radiobutton(frame6, text="Send home", variable=self.where, value=0).pack(side=LEFT, padx = 0, pady=0)
+        self.entry6 = Radiobutton(frame6, text="Send for further treatment", variable=self.where, value=1).pack(side=LEFT, padx = 0, pady=0)
 
 
 
@@ -171,13 +223,13 @@ class doctorForm(Frame):
 
     def getInfo(self):
 
-        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()), self.getSymptoms()])
+        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
 
     def onScale(self,val):
         v = int(float(val))
         self.var.set(v)
 
-    def getSymptoms(self): #How to get checkbox values?
+    def getDrugs(self): #How to get checkbox values?
         Symptoms = []
         i = 1
         for drug in (self.drug1,self.drug2,self.drug3,self.drug4,self.drug5,self.drug6,self.drug7,self.drug8,self.drug9,self.drug10):
@@ -187,16 +239,27 @@ class doctorForm(Frame):
 
         return(Symptoms)
 
+    def getTreatments(self): #How to get checkbox values?
+        Symptoms = []
+        i = 1
+        for treatment in (self.treatment1,self.treatment2,self.treatment3,self.treatment4,self.treatment5,self.treatment6,self.treatment7,self.treatment8,self.treatment9,self.treatment10):
+            if treatment.get():
+                Symptoms.append(i)
+            i=i+1
 
+        return(Symptoms)
 
+'''
 
 def main():
 
+    conn = psycopg2.connect("dbname=hospital user=postgres")
     root = Tk()
     root.geometry("700x300+300+300")
-    app = doctorForm(root)
+    app = doctorForm(root,conn)
     root.mainloop()
 
 
 if __name__ == '__main__':
     main()
+'''

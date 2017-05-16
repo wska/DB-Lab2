@@ -1,35 +1,48 @@
-
+#Python 2.7.0
+#William Skagerstrom, Teodor Karlgren
 
 from Tkinter import Tk, Text, TOP, BOTH, X, N, LEFT
 from Tkinter import *
+import tkMessageBox
 from ttk import Frame, Label, Entry
 from ttk import *
 from doctorForm import *
+from queuePicker import *
+import main
 
 
+class nurseForm(Frame):
 
-class Forms(Frame):
-
-    def __init__(self, parent):
+    def __init__(self, parent, conn):
         Frame.__init__(self, parent)
-
+        self.conn = conn
         self.parent = parent
         self.nurseForm()
+
+    def quit(self):
+        self.parent.destroy()
+
     def new_window(self):
         self.newWindow = Toplevel(self.parent)
-        self.app = doctorForm(self.newWindow)
+        self.patientInfo,self.teams = self.getInfo()
+        self.app = nurseQueueSelect(self.newWindow, self.patientInfo, self.teams, self.conn)
+
+
+
 
     def nurseForm(self):
 
         self.parent.title("Nurse Form")
+        self.parent.geometry("700x300+300+300")
         self.pack(fill=BOTH, expand=True)
 
 
         entry = Entry(self)
-        quitButton = Button(self, text ="Cancel", command=self.quit)
+        quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Add to queue", command=(self.getInfo))
+        patientInfo = self.getInfo
+        queueButton = Button(self,text="Add to queue", command=self.new_window)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -64,10 +77,10 @@ class Forms(Frame):
         genderLabel = Label(gender, text="Gender", width=8)
         genderLabel.pack(side=LEFT, padx=0, pady= 0)
 
-        self.genderChoice = IntVar()
+        self.genderChoice = StringVar()
 
-        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 1).pack(side=LEFT, padx = 0, pady=0)
-        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 0).pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Male", variable=self.genderChoice, value = 'M').pack(side=LEFT, padx = 0, pady=0)
+        self.gender = Radiobutton(gender, text="Female", variable=self.genderChoice, value = 'F').pack(side=LEFT, padx = 0, pady=0)
 
 
         frame3 = Frame(self)
@@ -117,7 +130,9 @@ class Forms(Frame):
 
     def getInfo(self):
 
-        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()), self.getSymptoms()])
+        teams = main.addPatient(self.conn, [self.entry1.get(),self.pNumberEntry.get(), self.genderChoice.get(), self.entry2.get()], self.getSymptoms()[0])
+        personInfo = [self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() , int(self.entry3.get()), self.genderChoice.get()], self.getSymptoms()[0]
+        return personInfo, teams
 
     def onScale(self,val):
         v = int(float(val))
@@ -134,14 +149,15 @@ class Forms(Frame):
         return(Symptoms)
 
 
-
+'''
 def main():
 
     root = Tk()
     root.geometry("700x300+300+300")
-    app = Forms(root)
+    app = nurseForm(root)
     root.mainloop()
 
 
 if __name__ == '__main__':
     main()
+'''
