@@ -15,3 +15,4 @@ insert into inQueue values('1995-01-01', now(), 1, 3, 2);
 insert into inQueue values('1996-01-01', now(), 1, 5, 1);
 insert into inQueue values('1997-01-01', now(), 2, 5, 2);
 insert into inQueue values('1998-01-01', now(), 2, 3, 1);
+insert into inQueue values('1999-01-01', now(), 2, 3, 4);
