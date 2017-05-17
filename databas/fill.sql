@@ -6,6 +6,8 @@ insert into patient values('Lisa',  '1995-01-01' ,'F' ,81);
 insert into patient values('Karl',  '1996-01-01' ,'M',19);
 insert into patient values('Sofia', '1997-01-01' ,'F',10);
 insert into patient values('Anders','1998-01-01' ,'M',51);
+insert into patient values('Anders','1999-01-01' ,'M',54);
+
 
 insert into inQueue values('1991-01-01', now(), 1, 2, 1);
 insert into inQueue values('1992-01-01', now(), 1, 4, 1);
