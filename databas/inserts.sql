@@ -49,7 +49,7 @@ insert into drug values (6, 'Alecensa', 30);
 insert into drug values (7, 'Alectinib', 10);
 insert into drug values (8, 'Alefacept', 10000);
 insert into drug values (9, 'Alemtuzumab', 5);
-insert into drug values (10 ,'Mebaral'500);
+insert into drug values (10 ,'Mebaral', 500);
 
 insert into treatment values (1 , 'Treat 1 ', 100);
 insert into treatment values (2 , 'Treat 2 ', 200);
@@ -61,4 +61,3 @@ insert into treatment values (7 , 'Treat 7 ', 700);
 insert into treatment values (8 , 'Treat 8 ', 800);
 insert into treatment values (9 , 'Treat 9 ', 900);
 insert into treatment values (10 , 'Treat 10', 1000);
-

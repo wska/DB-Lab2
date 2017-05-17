@@ -78,7 +78,7 @@ def getQueues(conn):
     """)
     return cursor.fetchall()
 
-    
+
 
 def addPatient(conn, values, issue):
     cursor = conn.cursor()
@@ -127,13 +127,30 @@ def logPatient(conn, values):
     """.format(*(values[:7])))
     cursor.execute("""
     DELETE FROM inQueue
-    WHERE patID = {}
+    WHERE patID = '{}'
     """.format(values[1]))
     cursor.execute("""
     DELETE FROM Patient
-    WHERE patID = {}
+    WHERE pnum = '{}'
     """.format(values[1]))
     conn.commit()
+
+
+def getTreatments(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT name
+    FROM treatment
+    """)
+    return [i[0] for i in cursor.fetchall()]
+
+def getDrugs(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT name
+    FROM drug
+    """)
+    return [i[0] for i in cursor.fetchall()]
 
 
 def getIssues(conn):

@@ -144,7 +144,8 @@ class doctorForm(Frame):
         lbl5 = Label(frame4, text="Treatments", width = 8)
         lbl5.pack(side=LEFT, padx = 5, pady = 5)
 
-        treatments = ["Proc1","Proc2","Proc3","Proc4", "Proc5","Proc6","Proc7","Proc8","Proc9","Proc10"]
+        treatments = main.getTreatments(self.conn)
+        #["Proc1","Proc2","Proc3","Proc4", "Proc5","Proc6","Proc7","Proc8","Proc9","Proc10"]
 
 
         self.treatment1=BooleanVar()
@@ -177,8 +178,7 @@ class doctorForm(Frame):
         lbl5 = Label(frame5, text="Drugs", width = 8)
         lbl5.pack(side=LEFT, padx = 5, pady = 5)
 
-        drugs = ["Drug1","Drug2","Drug3","Drug4", "Drug5","Drug6","Drug7","Drug8","Drug9","Drug10"]
-
+        drugs = main.getDrugs(self.conn)
 
         self.drug1=BooleanVar()
         self.drug2=BooleanVar()
@@ -214,7 +214,7 @@ class doctorForm(Frame):
 
 
 
-        self.where=BooleanVar()
+        self.where=IntVar()
 
 
         self.entry6 = Radiobutton(frame6, text="Send home", variable=self.where, value=0).pack(side=LEFT, padx = 0, pady=0)
