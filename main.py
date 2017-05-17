@@ -118,7 +118,15 @@ def deletaAll(conn):
 def logPatient(conn, values):
     # Name, pnum, ...
     pass
-    
+
+def getIssues(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT name
+    FROM Issue 
+    """);
+    return [i[0] for i in cursor.fetchall()]
+
 
 if __name__ == "__main__":
     conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
