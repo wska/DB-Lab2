@@ -157,55 +157,75 @@ class nurseQueueSelect(Frame):
 
     def open_NurseQueue1(self):
         nurseQueueButton1 = Button(self,text="Queue 1", command=self.sendToDatabase1)
-        nurseQueueButton1.pack(side=TOP, pady = 5)
+        nurseQueueButton1.pack(side=BOTTOM, pady = 5)
 
 
-        listBox1 = Listbox(self)
+        listBox1 = Listbox(self, width = 100)
         queue1 = getQueue(self.conn, 1)
-        #print(queue1)
+
         for i in range(0, len(queue1)):
-
-
-            ins1 = ""
-            #for j in range(0, 4):
-            #    ins1 = ins1 + str(queueIns1[j]) + ","
-            ins1 = str(queue1[i][1]) + "," + str(queue1[i][0]) + ", Issue:" + str(queue1[i][3]) + ", Gender:" + str(queue1[i][2])
+            ins1 = str(queue1[i][1]) + ", " + str(queue1[i][0]) + ", Issue:" + str(queue1[i][3]) + ", Priority:" + str(queue1[i][2])
             listBox1.insert(i, ins1)
 
-        listBox1.pack(side=RIGHT, pady = 2)
+        listBox1.pack(side=BOTTOM, pady = 2)
 
-
-        #getQueue(conn, 1)
-        #Listbox here
 
     def open_NurseQueue2(self):
         nurseQueueButton2 = Button(self,text="Queue 2", command=self.sendToDatabase2)
         nurseQueueButton2.pack(side=BOTTOM, pady = 5)
 
-        #getQueue(conn, 2)
-        #Listbox here
+        listBox2 = Listbox(self, width = 100)
+        queue2 = getQueue(self.conn, 2)
+
+        for i in range(0, len(queue2)):
+            ins2 = str(queue2[i][1]) + ", " + str(queue2[i][0]) + ", Issue:" + str(queue2[i][3]) + ", Priority:" + str(queue2[i][2])
+            listBox2.insert(i, ins2)
+
+        listBox2.pack(side=BOTTOM, pady = 2)
+
 
     def open_NurseQueue3(self):
         print(self.patientInfo)
         nurseQueueButton3 = Button(self,text="Queue 3", command=self.sendToDatabase3)
         nurseQueueButton3.pack(side=BOTTOM, pady = 5)
 
-        #getQueue(conn, 3)
-        #Listbox here
+        listBox3 = Listbox(self, width = 100)
+        queue3 = getQueue(self.conn, 3)
+
+        for i in range(0, len(queue3)):
+            ins3 = str(queue3[i][1]) + ", " + str(queue3[i][0]) + ", Issue:" + str(queue3[i][3]) + ", Priority:" + str(queue3[i][2])
+            listBox3.insert(i, ins3)
+
+        listBox3.pack(side=BOTTOM, pady = 2)
+
+
 
     def open_NurseQueue4(self):
         nurseQueueButton4 = Button(self,text="Queue 4", command=self.sendToDatabase4)
         nurseQueueButton4.pack(side=BOTTOM, pady = 5)
 
-        #getQueue(conn, 4)
-        #Listbox here
+        listBox4 = Listbox(self, width = 100)
+        queue4 = getQueue(self.conn, 4)
+
+        for i in range(0, len(queue4)):
+            ins4 = str(queue4[i][1]) + ", " + str(queue4[i][0]) + ", Issue:" + str(queue4[i][3]) + ", Priority:" + str(queue4[i][2])
+            listBox4.insert(i, ins4)
+
+        listBox4.pack(side=BOTTOM, pady = 2)
 
     def open_NurseQueue5(self):
         nurseQueueButton5 = Button(self,text="Queue 5", command=self.sendToDatabase5)
         nurseQueueButton5.pack(side=BOTTOM, pady = 5)
 
-        #getQueue(conn, 5)
-        #Listbox here
+        listBox5 = Listbox(self, width = 100)
+        queue5 = getQueue(self.conn, 5)
+
+        for i in range(0, len(queue5)):
+            ins5 = str(queue5[i][1]) + ", " + str(queue5[i][0]) + ", Issue:" + str(queue5[i][3]) + ", Priority:" + str(queue5[i][2])
+            listBox5.insert(i, ins5)
+
+        listBox5.pack(side=BOTTOM, pady = 2)
+
 
     def quit(self):
         self.parent.destroy()
