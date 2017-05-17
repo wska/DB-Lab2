@@ -130,20 +130,20 @@ class nurseQueueSelect(Frame):
         print(self.teams)
         for i in self.teams:
             if i == 1:
-                print("open 1")
+                #print("open 1")
                 self.open_NurseQueue1()
             elif i == 2:
-                print("open 2")
+                #print("open 2")
                 self.open_NurseQueue2()
             elif i == 3:
-                print("open 3")
+                #print("open 3")
                 self.open_NurseQueue3()
             elif i == 4:
-                print("open 4")
+                #print("open 4")
 
                 self.open_NurseQueue4()
             elif i == 5:
-                print("open 5")
+                #print("open 5")
                 self.open_NurseQueue5()
 
 
@@ -157,7 +157,23 @@ class nurseQueueSelect(Frame):
 
     def open_NurseQueue1(self):
         nurseQueueButton1 = Button(self,text="Queue 1", command=self.sendToDatabase1)
-        nurseQueueButton1.pack(side=BOTTOM, pady = 5)
+        nurseQueueButton1.pack(side=TOP, pady = 5)
+
+
+        listBox1 = Listbox(self)
+        queue1 = getQueue(self.conn, 1)
+        #print(queue1)
+        for i in range(0, len(queue1)):
+
+
+            ins1 = ""
+            #for j in range(0, 4):
+            #    ins1 = ins1 + str(queueIns1[j]) + ","
+            ins1 = str(queue1[i][1]) + "," + str(queue1[i][0]) + ", Issue:" + str(queue1[i][3]) + ", Gender:" + str(queue1[i][2])
+            listBox1.insert(i, ins1)
+
+        listBox1.pack(side=RIGHT, pady = 2)
+
 
     def open_NurseQueue2(self):
         nurseQueueButton2 = Button(self,text="Queue 2", command=self.sendToDatabase2)

@@ -25,7 +25,7 @@ class doctorForm(Frame):
     def initUI(self):
 
         self.parent.title("Doctor Form")
-        self.parent.geometry("700x500+300+300")
+        self.parent.geometry("700x700+300+300")
         self.pack(fill=BOTH, expand=True)
 
         #print(self.doctorTeam)
@@ -74,6 +74,27 @@ class doctorForm(Frame):
         self.pNumberEntry.insert(INSERT, cpnum)
 
 
+
+        timeFrame = Frame(self)
+        timeFrame.pack(fill=X)
+
+        timeLabel = Label(timeFrame, text="TOA", width=8)
+        timeLabel.pack(side=LEFT, padx=5, pady=5)
+
+        self.timeEntry = Entry(frame1)
+        self.timeEntry.pack(fill=X, padx=5, expand=True)
+        self.timeEntry.insert(INSERT, carrival)
+
+
+        teamFrame = Frame(self)
+        teamFrame.pack(fill=X)
+        teamLabel = Label(teamFrame, text="Handled by team:", width=8)
+        teamLabel.pack(side=LEFT, padx=5, pady=5)
+
+        self.teamEntry = Entry(frame1)
+        self.teamEntry.pack(fill=X, padx=5, expand=True)
+        self.teamEntry.insert(INSERT, cteamid)
+
         frame2 = Frame(self)
         frame2.pack(fill=X)
 
@@ -98,26 +119,6 @@ class doctorForm(Frame):
 
 
 
-        timeFrame = Frame(self)
-        timeFrame.pack(fill=X)
-
-        timeLabel = Label(timeFrame, text="TOA", width=8)
-        timeLabel.pack(side=LEFT, padx=5, pady=5)
-
-        self.timeEntry = Entry(frame1)
-        self.timeEntry.pack(fill=X, padx=5, expand=True)
-        self.timeEntry.insert(INSERT, carrival)
-
-
-        teamFrame = Frame(self)
-        teamFrame.pack(fill=X)
-
-        teamLabel = Label(teamFrame, text="Handled by team:", width=15)
-        teamLabel.pack(side=LEFT, padx=5, pady=5)
-
-        self.timeEntry = Entry(frame1)
-        self.timeEntry.pack(fill=X, padx=5, expand=True)
-        self.teamEntry.insert(INSERT, cteamid)
 
 
 

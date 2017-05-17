@@ -51,7 +51,7 @@ class Menu(Frame):
         menuRemoveButton.pack(side=BOTTOM, pady = 5)
 
 def main():
-    conn = psycopg2.connect("dbname=hospital user=postgres")
+    conn = psycopg2.connect("dbname=hospital user=william")
     root = Tk()
     root.geometry("300x120+300+300")
     app = Menu(root, conn)
