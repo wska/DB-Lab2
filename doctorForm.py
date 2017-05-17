@@ -121,8 +121,6 @@ class doctorForm(Frame):
 
 
 
-
-
         frame3 = Frame(self)
         frame3.pack(fill=X)
 
@@ -223,7 +221,7 @@ class doctorForm(Frame):
 
 
     def getInfo(self):
-
+        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
         return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
 
     def onScale(self,val):
