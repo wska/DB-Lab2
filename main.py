@@ -78,12 +78,13 @@ def getQueues(conn):
     """)
     return cursor.fetchall()
 
+    
+
 def addPatient(conn, values, issue):
     cursor = conn.cursor()
     cursor.execute("""
     INSERT INTO Patient values('{}', '{}', '{}', {});
     """.format(*values))
-    conn.commit()
     cursor = conn.cursor()
     cursor.execute("""
     SELECT teamID
