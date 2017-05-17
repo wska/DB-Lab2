@@ -121,7 +121,7 @@ def logPatient(conn, values):
     logPatinet = []
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO PatientLog values('{}', '{}', '{}', {}, {}, {}, now(), {})
+    INSERT INTO PatientLog values('{}', '{}', '{}', {}, {}, '{}', now(), {})
     """.format(*(values[:7])))
     cursor.execute("""
     DELETE FROM inQueue

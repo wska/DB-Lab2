@@ -226,7 +226,7 @@ class doctorForm(Frame):
 
     def getInfo(self):
         #name, pnum, gender, age, prio, timearrival, senthome, treamtents, drugs
-        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.timeEntry.get(), self.where.get(), self.getTreatments(), self.getDrugs()])
+        return([self.entry1.get(),self.pNumberEntry.get(),self.genderChoice.get(), self.entry2.get(),int(self.entry3.get()),str(self.timeEntry.get()), self.where.get(), self.getTreatments(), self.getDrugs()])
 
     def onScale(self,val):
         v = int(float(val))

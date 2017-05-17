@@ -73,7 +73,3 @@ CREATE TABLE usedTreatment (
 tid int references Treatment(tid),
 patient varchar(13) references Patient(pnum)
 );
-
-
-
-
