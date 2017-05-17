@@ -58,6 +58,7 @@ Name varchar(255) not null,
 pnum varchar(13) primary key,
 gender varchar(1),
 age int,
+prio int,
 arrival timestamp,
 departure timestamp,
 sentHome int

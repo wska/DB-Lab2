@@ -22,6 +22,10 @@ class doctorForm(Frame):
     def quit(self):
         self.parent.destroy()
 
+    def logPatient(self):
+        values = self.getInfo()
+        main.logPatient(self.conn, values)
+
     def initUI(self):
 
         self.parent.title("Doctor Form")
@@ -49,7 +53,7 @@ class doctorForm(Frame):
         quitButton = Button(self, text ="Exit", command=self.quit)
         quitButton.pack(side=BOTTOM, pady = 10)
 
-        queueButton = Button(self,text="Checkout", command=self.quit)
+        queueButton = Button(self,text="Checkout", command=self.logPatient)
         queueButton.pack(side=BOTTOM, pady = 20)
 
 
@@ -221,8 +225,8 @@ class doctorForm(Frame):
 
 
     def getInfo(self):
-        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
-        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
+        #name, pnum, gender, age, prio, timearrival, senthome, treamtents, drugs
+        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.timeFrame.get(), self.where.get(), self.getTreatments(), self.getDrugs()])
 
     def onScale(self,val):
         v = int(float(val))
