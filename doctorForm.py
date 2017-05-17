@@ -115,8 +115,8 @@ class doctorForm(Frame):
         teamLabel = Label(teamFrame, text="Handled by team:", width=15)
         teamLabel.pack(side=LEFT, padx=5, pady=5)
 
-        self.timeEntry = Entry(frame1)
-        self.timeEntry.pack(fill=X, padx=5, expand=True)
+        self.teamEntry = Entry(frame1)
+        self.teamEntry.pack(fill=X, padx=5, expand=True)
         self.teamEntry.insert(INSERT, cteamid)
 
 
@@ -222,7 +222,7 @@ class doctorForm(Frame):
 
 
     def getInfo(self):
-
+        print([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
         return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.getTreatments(), self.getDrugs(), self.where.get()])
 
     def onScale(self,val):

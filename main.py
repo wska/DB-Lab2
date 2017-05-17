@@ -99,6 +99,34 @@ def top(conn, queue):
     """.format(queue))
     return cursor.fetchall()
 
+def deletaAll(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    DELETE FROM inQueue;
+    """)
+    conn.commit()
+    cursor = conn.cursor()
+    cursor.execute("""
+    DELETE FROM Patient;
+    """)
+    conn.commit()
+
+def logPatient(conn, values):
+    logPatinet = []
+    cursor = conn.cursor()
+    cursor.execute("""
+    INSERT INTO PatientLog values('{}', '{}', '{}', {}, '{}', now(), {})
+    """.format(*values))
+
+def getIssues(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT name
+    FROM Issue 
+    """);
+    return [i[0] for i in cursor.fetchall()]
+
+
 if __name__ == "__main__":
     conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
     print(getQueueTimes(conn, 4))
