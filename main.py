@@ -78,6 +78,8 @@ def getQueues(conn):
     """)
     return cursor.fetchall()
 
+    
+
 def addPatient(conn, values, issue):
     cursor = conn.cursor()
     cursor.execute("""
