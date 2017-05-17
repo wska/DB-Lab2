@@ -101,7 +101,8 @@ class nurseForm(Frame):
         lbl4 = Label(frame4, text="Symptoms", width = 8)
         lbl4.pack(side=LEFT, padx = 5, pady = 5)
 
-        issue = ["Test1","Test2","Test3","Test4", "Test5","Test6","Test7","Test8","Test9","Test10"]
+        issue = main.getIssues(self.conn)
+        #["Test1","Test2","Test3","Test4", "Test5","Test6","Test7","Test8","Test9","Test10"]
 
         self.issue1=BooleanVar()
         self.issue2=BooleanVar()
