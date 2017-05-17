@@ -159,24 +159,37 @@ class nurseQueueSelect(Frame):
         nurseQueueButton1 = Button(self,text="Queue 1", command=self.sendToDatabase1)
         nurseQueueButton1.pack(side=BOTTOM, pady = 5)
 
+        #getQueue(conn, 1)
+        #Listbox here
+
     def open_NurseQueue2(self):
         nurseQueueButton2 = Button(self,text="Queue 2", command=self.sendToDatabase2)
         nurseQueueButton2.pack(side=BOTTOM, pady = 5)
 
+        #getQueue(conn, 2)
+        #Listbox here
 
     def open_NurseQueue3(self):
         print(self.patientInfo)
         nurseQueueButton3 = Button(self,text="Queue 3", command=self.sendToDatabase3)
         nurseQueueButton3.pack(side=BOTTOM, pady = 5)
 
+        #getQueue(conn, 3)
+        #Listbox here
+
     def open_NurseQueue4(self):
         nurseQueueButton4 = Button(self,text="Queue 4", command=self.sendToDatabase4)
         nurseQueueButton4.pack(side=BOTTOM, pady = 5)
+
+        #getQueue(conn, 4)
+        #Listbox here
 
     def open_NurseQueue5(self):
         nurseQueueButton5 = Button(self,text="Queue 5", command=self.sendToDatabase5)
         nurseQueueButton5.pack(side=BOTTOM, pady = 5)
 
+        #getQueue(conn, 5)
+        #Listbox here
 
     def quit(self):
         self.parent.destroy()

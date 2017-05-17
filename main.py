@@ -34,6 +34,10 @@ def getQueueTimes(conn, prio):
     rows = cursor.fetchall()
     return rows
 
+
+# Return dict in the format {1: [], 2: [], 3: [], 4: [], 5: []}
+# where keys are the team id:s and the values are the issues the
+# team is able to treat
 def getSpec(conn):
     cursor = conn.cursor()
     specDict = {}
@@ -50,13 +54,16 @@ def getSpec(conn):
 def getQueue(conn, tId):
     cursor = conn.cursor()
     cursor.execute("""
-    SELECT *
+    SELECT Patient.name, Patient.pnum, inQueue.prio, Issue.name 
     FROM Patient
     JOIN inQueue
     ON Patient.pnum = inQueue.patid
+    JOIN Issue
+    ON inQueue.issue = Issue.id
     WHERE inqueue.teamID = {}
     """.format(tId))
     return cursor.fetchall()
+
 
 def addToQueue(conn, values):
     cursor = conn.cursor()
@@ -98,6 +105,31 @@ def top(conn, queue):
     limit 1
     """.format(queue))
     return cursor.fetchall()
+
+def deletaAll(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    DELETE FROM inQueue;
+    """)
+    conn.commit()
+    cursor = conn.cursor()
+    cursor.execute("""
+    DELETE FROM Patient;
+    """)
+    conn.commit()
+
+def logPatient(conn, values):
+    # Name, pnum, ...
+    pass
+
+def getIssues(conn):
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT name
+    FROM Issue 
+    """);
+    return [i[0] for i in cursor.fetchall()]
+
 
 if __name__ == "__main__":
     conn = psycopg2.connect("dbname = hospital user=postgres host=localhost")
