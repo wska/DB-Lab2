@@ -160,7 +160,7 @@ class nurseQueueSelect(Frame):
         nurseQueueButton1.pack(side=BOTTOM, pady = 5)
 
 
-        listBox1 = Listbox(self, width = 100)
+        listBox1 = Listbox(self, width = 200)
         queue1 = getQueue(self.conn, 1)
 
         for i in range(0, len(queue1)):
@@ -228,6 +228,7 @@ class nurseQueueSelect(Frame):
 
 
     def quit(self):
+        self.conn.rollback()
         self.parent.destroy()
 
 

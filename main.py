@@ -53,7 +53,7 @@ def getSpec(conn):
 def getQueue(conn, tId):
     cursor = conn.cursor()
     cursor.execute("""
-    SELECT Patient.name, Patient.pnum, inQueue.prio, Issue.name 
+    SELECT Patient.name, Patient.pnum, inQueue.prio, Issue.name
     FROM Patient
     JOIN inQueue
     ON Patient.pnum = inQueue.patid
@@ -124,7 +124,7 @@ def logPatient(conn, values):
     cursor = conn.cursor()
     cursor.execute("""
     INSERT INTO PatientLog values('{}', '{}', '{}', {}, {}, {}, now(), {})
-    """.format(*(values[:7]))
+    """.format(*(values[:7])))
     cursor.execute("""
     DELETE FROM inQueue
     WHERE patID = {}
@@ -134,13 +134,13 @@ def logPatient(conn, values):
     WHERE patID = {}
     """.format(values[1]))
     conn.commit()
-    
+
 
 def getIssues(conn):
     cursor = conn.cursor()
     cursor.execute("""
     SELECT name
-    FROM Issue 
+    FROM Issue
     """);
     return [i[0] for i in cursor.fetchall()]
 
