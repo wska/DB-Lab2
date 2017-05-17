@@ -54,13 +54,16 @@ def getSpec(conn):
 def getQueue(conn, tId):
     cursor = conn.cursor()
     cursor.execute("""
-    SELECT *
+    SELECT Patient.name, Patient.pnum, inQueue.prio, Issue.name 
     FROM Patient
     JOIN inQueue
     ON Patient.pnum = inQueue.patid
+    JOIN Issue
+    ON inQueue.issue = Issue.id
     WHERE inqueue.teamID = {}
     """.format(tId))
     return cursor.fetchall()
+
 
 def addToQueue(conn, values):
     cursor = conn.cursor()

@@ -1,2 +1,2 @@
-delete from inqueue;
-delete from patients;
+DELETE FROM inQueue;
+DELETE FROM Patients;
