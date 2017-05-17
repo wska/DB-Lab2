@@ -1,4 +1,3 @@
-
 #Python 2.7.0
 #William Skagerstrom, Teodor Karlgren
 
@@ -119,11 +118,22 @@ def deletaAll(conn):
     conn.commit()
 
 def logPatient(conn, values):
+    #name, pnum, gender, age, prio, timearrival, senthome, treamtents, drugs
     logPatinet = []
     cursor = conn.cursor()
     cursor.execute("""
-    INSERT INTO PatientLog values('{}', '{}', '{}', {}, '{}', now(), {})
-    """.format(*values))
+    INSERT INTO PatientLog values('{}', '{}', '{}', {}, {}, {}, now(), {})
+    """.format(*(values[:7]))
+    cursor.execute("""
+    DELETE FROM inQueue
+    WHERE patID = {}
+    """.format(values[1]))
+    cursor.execute("""
+    DELETE FROM Patient
+    WHERE patID = {}
+    """.format(values[1]))
+    conn.commit()
+    
 
 def getIssues(conn):
     cursor = conn.cursor()

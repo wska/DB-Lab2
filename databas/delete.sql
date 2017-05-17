@@ -1,2 +1,2 @@
 DELETE FROM inQueue;
-DELETE FROM Patients;
+DELETE FROM Patient;
