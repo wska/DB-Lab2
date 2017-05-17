@@ -85,17 +85,17 @@ class doctorForm(Frame):
         timeLabel = Label(timeFrame, text="TOA", width=8)
         timeLabel.pack(side=LEFT, padx=5, pady=5)
 
-        self.timeEntry = Entry(frame1)
+        self.timeEntry = Entry(timeFrame)
         self.timeEntry.pack(fill=X, padx=5, expand=True)
         self.timeEntry.insert(INSERT, carrival)
 
 
         teamFrame = Frame(self)
         teamFrame.pack(fill=X)
-        teamLabel = Label(teamFrame, text="Handled by team:", width=8)
+        teamLabel = Label(teamFrame, text="Handled by team:", width=15)
         teamLabel.pack(side=LEFT, padx=5, pady=5)
 
-        self.teamEntry = Entry(frame1)
+        self.teamEntry = Entry(teamFrame)
         self.teamEntry.pack(fill=X, padx=5, expand=True)
         self.teamEntry.insert(INSERT, cteamid)
 
@@ -226,7 +226,7 @@ class doctorForm(Frame):
 
     def getInfo(self):
         #name, pnum, gender, age, prio, timearrival, senthome, treamtents, drugs
-        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.timeFrame.get(), self.where.get(), self.getTreatments(), self.getDrugs()])
+        return([self.entry1.get(),self.pNumberEntry.get(),self.entry2.get() ,self.genderChoice.get(), int(self.entry3.get()),self.timeEntry.get(), self.where.get(), self.getTreatments(), self.getDrugs()])
 
     def onScale(self,val):
         v = int(float(val))
